@@ -1,0 +1,195 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Math Songs - Amchi Shala</title>
+  <link rel="stylesheet" href="{% static 'styles/stylesheet.css' %}">
+  <link rel="stylesheet" href="{% static 'styles/StarfallvBP.css' %}">
+  <style>
+    /* Styles unchanged */
+    body {
+      margin: 0;
+      font-family: 'Liberation Sans', sans-serif;
+      background-color: #f0fff0;
+      color: #003300;
+    }
+    header {
+      background-color: #006400;
+      padding: 20px;
+      text-align: center;
+      color: white;
+    }
+    header img {
+      height: 50px;
+      vertical-align: middle;
+    }
+    header h1 {
+      display: inline-block;
+      margin-left: 10px;
+      vertical-align: middle;
+      font-size: 26px;
+    }
+    .main {
+      max-width: 1080px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 100, 0, 0.15);
+      transition: all 0.3s ease-in-out;
+    }
+    .main h2 {
+      text-align: center;
+      color: #006400;
+      font-size: 28px;
+      margin-bottom: 30px;
+    }
+    .videos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .video-box {
+      background-color: #e6ffe6;
+      padding: 16px;
+      border-radius: 12px;
+      box-shadow: 0 4px 14px rgba(0, 100, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+    .video-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0, 100, 0, 0.2);
+    }
+    .video-box img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+    .video-box h3 {
+      margin: 10px 0 5px;
+      color: #004d00;
+      font-size: 20px;
+    }
+    .video-box p {
+      font-size: 15px;
+      margin-bottom: 10px;
+      color: #333;
+    }
+    .video-box video {
+      width: 100%;
+      border-radius: 8px;
+      outline: none;
+    }
+    footer {
+      background-color: #78e22a;
+      text-align: center;
+      padding: 15px;
+      font-size: 14px;
+      color: #003300;
+      margin-top: 40px;
+    }
+    .back-button {
+      margin: 20px;
+      padding: 10px 20px;
+      background-color: #006400;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .back-button:hover {
+      background-color: #004d00;
+    }
+    
+    
+  </style>
+</head>
+<body>
+  <header>
+    <img src="{% static 'images/Logo.png' %}" alt="Logo">
+    <h1>Amchi Shala - Math Songs</h1>
+  </header>
+  <button class="back-button" onclick="history.back()">← Go Back</button>
+
+  <div class="main">
+    <h2>Explore Math with Joyful Songs & Catchy Tunes!</h2>
+    <div class="videos-grid">
+
+      <div class="video-box">
+        <h3>Five Little Frogs</h3>
+        <p>Sing along with five frogs as they count down into the pond!</p>
+        <video controls poster="{% static 'thumbnails/frogs.png' %}" onclick="toggleFullScreen(this)">
+          <source src="{% static 'media/5 frogs.mp4' %}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <div class="video-box">
+        <h3>I Have Six Dollars</h3>
+        <p>Learn simple money math with this playful dollar song!</p>
+        <video controls poster="{% static 'thumbnails/I Have six dollars.png' %}" onclick="toggleFullScreen(this)">
+          <source src="{% static 'media/I Have six dollars.mp4' %}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <div class="video-box">
+        <h3>Months of the Year</h3>
+        <p>Catchy tune for learning all 12 months in order!</p>
+        <video controls poster="{% static 'thumbnails/months.png' %}" onclick="toggleFullScreen(this)">
+          <source src="{% static 'media/months of year.mp4' %}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <div class="video-box">
+        <h3>Counting Fingers</h3>
+        <p>Learn numbers while counting fingers in a rhyme format.</p>
+        <video controls poster="{% static 'thumbnails/once i caught.png' %}" onclick="toggleFullScreen(this)">
+          <source src="{% static 'media/once i caught.mp4' %}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <div class="video-box">
+        <h3>10 Kids Jumping</h3>
+        <p>Enjoy counting backward with 10 jumping kids!</p>
+        <video controls poster="{% static 'thumbnails/the kids.png' %}" onclick="toggleFullScreen(this)">
+          <source src="{% static 'media/10 kids.mp4' %}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <div class="video-box">
+        <h3>All About Zero</h3>
+        <p>Understand the concept of zero in a fun and easy way!</p>
+        <video controls poster="{% static 'thumbnails/zero.png' %}" onclick="toggleFullScreen(this)">
+          <source src="{% static 'media/zero.mp4' %}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    Amchi Shala © 2025. All rights reserved.
+  </footer>
+
+  <script>
+    function toggleFullScreen(video) {
+      if (video.requestFullscreen) {
+        video.requestFullscreen();
+      } else if (video.webkitRequestFullscreen) {
+        video.webkitRequestFullscreen();
+      } else if (video.msRequestFullscreen) {
+        video.msRequestFullscreen();
+      }
+    }
+  </script>
+</body>
+</html>

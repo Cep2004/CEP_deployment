@@ -1,0 +1,138 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Letter Spotlight Animation</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial Rounded MT Bold', Arial, sans-serif;
+      background: linear-gradient(135deg, #f9f871, #ffb6c1, #add8e6, #d1ffc6);
+      background-size: 600% 600%;
+      animation: gradientFlow 15s ease infinite;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    @keyframes gradientFlow {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+    h1.title {
+      color: green;
+      font-size: 3rem;
+      text-shadow: 2px 2px #fff;
+      margin-bottom: 30px;
+    }
+
+    .letter-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+      gap: 15px;
+      max-width: 800px;
+      width: 100%;
+    }
+
+    .letter {
+      background-color: rgba(255, 255, 255, 0.85);
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      text-align: center;
+      font-size: 2rem;
+      transition: transform 0.3s ease, z-index 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      z-index: 0;
+    }
+
+    .letter.zoom {
+      transform: scale(3);
+      z-index: 100;
+      background-color: #c8facc;
+    }
+    .back-button {
+      align-self: flex-start;
+      margin-bottom: 30px;
+      padding: 10px 20px;
+      background-color: green;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .back-button:hover {
+      background-color: darkgreen;
+    }
+    
+  </style>
+</head>
+<body>
+  <button class="back-button" onclick="history.back()">← Go Back</button>
+  <h1 class="title">Alphabet Spotlight</h1>
+
+
+  <div class="letter-container" id="alphabet">
+    <!-- Letters A-Z -->
+    <div class="letter">A</div>
+    <div class="letter">B</div>
+    <div class="letter">C</div>
+    <div class="letter">D</div>
+    <div class="letter">E</div>
+    <div class="letter">F</div>
+    <div class="letter">G</div>
+    <div class="letter">H</div>
+    <div class="letter">I</div>
+    <div class="letter">J</div>
+    <div class="letter">K</div>
+    <div class="letter">L</div>
+    <div class="letter">M</div>
+    <div class="letter">N</div>
+    <div class="letter">O</div>
+    <div class="letter">P</div>
+    <div class="letter">Q</div>
+    <div class="letter">R</div>
+    <div class="letter">S</div>
+    <div class="letter">T</div>
+    <div class="letter">U</div>
+    <div class="letter">V</div>
+    <div class="letter">W</div>
+    <div class="letter">X</div>
+    <div class="letter">Y</div>
+    <div class="letter">Z</div>
+  </div>
+
+  <script>
+    const letters = document.querySelectorAll('.letter');
+
+    function spotlightLetters(index = 0) {
+      if (index >= letters.length) return;
+
+      const current = letters[index];
+
+      // Zoom current letter
+      current.classList.add('zoom');
+
+      // After delay, remove zoom and move to next
+      setTimeout(() => {
+        current.classList.remove('zoom');
+        spotlightLetters(index + 1);
+      }, 1000); // 400ms per letter
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      spotlightLetters();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,181 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learn Shapes - Amchi Shala</title>
+  <link rel="stylesheet" href="{% static 'styles/stylesheet.css' %}">
+  <link rel="stylesheet" href="{% static 'styles/StarfallvBP.css' %}">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Liberation Sans', sans-serif;
+      background-color: #f0fff0;
+      color: #003300;
+    }
+    header {
+      background-color: #006400;
+      padding: 20px;
+      text-align: center;
+      color: white;
+    }
+    header img {
+      height: 50px;
+      vertical-align: middle;
+    }
+    header h1 {
+      display: inline-block;
+      margin-left: 10px;
+      vertical-align: middle;
+      font-size: 26px;
+    }
+    .main {
+      max-width: 1080px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 100, 0, 0.15);
+    }
+    .main h2 {
+      text-align: center;
+      color: #006400;
+      font-size: 28px;
+      margin-bottom: 30px;
+    }
+    .videos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .video-box {
+      background-color: #e6ffe6;
+      padding: 16px;
+      border-radius: 12px;
+      box-shadow: 0 4px 14px rgba(0, 100, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+    .video-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0, 100, 0, 0.2);
+    }
+    .video-box video {
+      width: 100%;
+      border-radius: 8px;
+      outline: none;
+    }
+    .video-box h3 {
+      margin: 10px 0 5px;
+      color: #004d00;
+      font-size: 20px;
+    }
+    .video-box p {
+      font-size: 15px;
+      margin-bottom: 10px;
+      color: #333;
+    }
+    footer {
+      background-color: #78e22a;
+      text-align: center;
+      padding: 15px;
+      font-size: 14px;
+      color: #003300;
+      margin-top: 40px;
+    }
+    .back-button {
+      margin: 20px;
+      padding: 10px 20px;
+      background-color: #006400;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .back-button:hover {
+      background-color: #004d00;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="{% static 'images/Logo.png' %}" alt="Logo">
+    <h1>Amchi Shala - Learn Shapes</h1>
+  </header>
+  <button class="back-button" onclick="history.back()">← Go Back</button>
+
+  <div class="main">
+    <h2>Understand Shapes with Fun and Easy Videos!</h2>
+    <div class="videos-grid">
+
+      <div class="video-box">
+        <h3>Circle</h3>
+        <p>Learn how to identify and draw a circle with examples from everyday life.</p>
+        <video onclick="openFullscreen(this)" controls poster="{% static 'thumbnails/circle.jpeg' %}">
+          <source src="{% static 'media/Circle Song.mp4' %}" type="video/mp4">
+        </video>
+      </div>
+
+      <div class="video-box">
+        <h3>Square</h3>
+        <p>See how squares look, where they appear around us, and how to draw them!</p>
+        <video onclick="openFullscreen(this)" controls poster="{% static 'thumbnails/square.jpeg' %}">
+          <source src="{% static 'media/Square Song.mp4' %}" type="video/mp4">
+        </video>
+      </div>
+
+      <div class="video-box">
+        <h3>Triangle</h3>
+        <p>Triangles are everywhere! Learn the shape and explore fun examples.</p>
+        <video onclick="openFullscreen(this)" controls poster="{% static 'thumbnails/triangle.jpeg' %}">
+          <source src="{% static 'media/Triangle Song.mp4' %}" type="video/mp4">
+        </video>
+      </div>
+
+      <div class="video-box">
+        <h3>Rectangle</h3>
+        <p>Discover the rectangle shape through storytelling and visuals.</p>
+        <video onclick="openFullscreen(this)" controls poster="{% static 'thumbnails/rectangle.jpeg' %}">
+          <source src="{% static 'media/Rectangle Song.mp4' %}" type="video/mp4">
+        </video>
+      </div>
+
+      <div class="video-box">
+        <h3>Star Shape</h3>
+        <p>Twinkle with this star-shaped learning session designed for kids!</p>
+        <video onclick="openFullscreen(this)" controls poster="{% static 'thumbnails/star.jpeg' %}">
+          <source src="{% static 'media/Star Song.mp4' %}" type="video/mp4">
+        </video>
+      </div>
+
+      <div class="video-box">
+        <h3>Heart Shape</h3>
+        <p>Learn the heart shape with a lovely animated guide to help kids relate emotionally.</p>
+        <video onclick="openFullscreen(this)" controls poster="{% static 'thumbnails/heart.jpeg' %}">
+          <source src="{% static 'media/Heart Song.mp4' %}" type="video/mp4">
+        </video>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    Amchi Shala © 2025. All rights reserved.
+  </footer>
+
+  <script>
+    function openFullscreen(videoElement) {
+      if (videoElement.requestFullscreen) {
+        videoElement.requestFullscreen();
+      } else if (videoElement.webkitRequestFullscreen) {
+        videoElement.webkitRequestFullscreen();
+      } else if (videoElement.msRequestFullscreen) {
+        videoElement.msRequestFullscreen();
+      }
+    }
+  </script>
+</body>
+</html>

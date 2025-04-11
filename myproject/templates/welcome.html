@@ -1,0 +1,130 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome - Amchi Shala</title>
+  <link rel="stylesheet" href="{% static 'styles/stylesheet.css' %}">
+  <link rel="stylesheet" href="{% static 'styles/StarfallvBP.css' %}">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Liberation Sans', sans-serif;
+      background-color: #e6ffe6;
+      color: #003300;
+    }
+    header {
+      background-color: #006400;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+    }
+    header img {
+      height: 50px;
+    }
+    .main {
+      max-width: 1080px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+    .sections {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 30px;
+    }
+    .section-box {
+      background-color: #ffffff;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 6px 18px rgba(0, 100, 0, 0.1);
+      text-align: center;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: #003300;
+    }
+    .section-box:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 24px rgba(0, 100, 0, 0.2);
+    }
+    .section-box img {
+      width: 100%;
+      max-height: 160px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+    .section-box h3 {
+      margin-bottom: 8px;
+      color: #006400;
+      font-size: 20px;
+    }
+    .section-box p {
+      margin: 0;
+      font-size: 15px;
+      color: #444;
+    }
+    footer {
+      background-color: #78e22a;
+      text-align: center;
+      padding: 15px;
+      font-size: 14px;
+      color: #003300;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="{% static 'images/Logo.png' %}" alt="Amchi Shala Logo">
+    </div>
+    <div class="title">
+      <h1>Welcome to Amchi Shala</h1>
+    </div>
+  </header>
+
+  <main class="main">
+    <h2 style="text-align: center; color: #004d00;">Choose a Section to Explore</h2>
+    <div class="sections">
+      <a href="{% url 'abc_songs' %}" class="section-box">
+        <img src="{% static 'images/ABC rhymes.png' %}" alt="ABC Songs">
+        <h3>ABC Songs</h3>
+        <p>Sing, dance, and learn your ABCs with joyful videos and tunes.</p>
+      </a>
+      <a href="{% url 'math_songs' %}" class="section-box">
+        <img src="{% static 'images/maths songs.png' %}" alt="Math Songs">
+        <h3>Math Songs</h3>
+        <p>Interactive songs to learn numbers and math basics.</p>
+      </a>
+      <a href="{% url 'alphabet' %}" class="section-box">
+        <img src="{% static 'images/alphabet.webp' %}" alt="Alphabet">
+        <h3>Alphabet</h3>
+        <p>Colorful animated stories for early learners.</p>
+      </a>
+      <a href="{% url 'colors' %}" class="section-box">
+        <img src="{% static 'images/colors.jpg' %}" alt="Colours">
+        <h3>Colours</h3>
+        <p>Sing along with joyful and engaging rhymes.</p>
+      </a>
+      <a href="{% url 'numbers' %}" class="section-box">
+        <img src="{% static 'images/numbers.jpg' %}" alt="Number">
+        <h3>Number</h3>
+        <p>Videos to build habits, hygiene, and routines.</p>
+      </a>
+      <a href="{% url 'shapes' %}" class="section-box">
+        <img src="{% static 'images/shapes.jpeg' %}" alt="Shapes">
+        <h3>Shapes</h3>
+        <p>Activities to draw, color, and express imagination.</p>
+      </a>
+      
+    </div>
+  </main>
+
+  <footer>
+    Amchi Shala © 2025. All rights reserved. Empowering every child to learn joyfully.
+  </footer>
+</body>
+</html>

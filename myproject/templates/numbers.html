@@ -1,0 +1,243 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Interactive Numbers 0-9</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background-color: #f0f8ff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px;
+      overflow-x: hidden;
+      transition: background-color 1s ease;
+    }
+
+    h1 {
+      font-size: 4rem;
+      color: #444;
+      margin-bottom: 50px;
+      text-shadow: 0 0 10px #ffd700;
+      animation: glowTitle 2s infinite alternate;
+    }
+
+    @keyframes glowTitle {
+      from { text-shadow: 0 0 10px #ff8c00; }
+      to   { text-shadow: 0 0 25px #ff1493; }
+    }
+
+    .numbers-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      max-width: 900px;
+      width: 100%;
+      margin-bottom: 40px;
+    }
+
+    .num-tile {
+      height: 150px;
+      background-color: #f0e68c;
+      border-radius: 25px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 4rem;
+      font-weight: bold;
+      color: #444;
+      cursor: pointer;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease, background-color 0.3s;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .num-tile:hover {
+      transform: scale(1.2);
+      background-color: #ffe080;
+    }
+
+    .showcase {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      background-color: #ffffff;
+      padding: 50px;
+      border-radius: 30px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+      font-size: 5rem;
+      color: #222;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.4s ease;
+      pointer-events: none;
+    }
+
+    .showcase.show {
+      transform: translate(-50%, -50%) scale(1);
+      pointer-events: auto;
+    }
+
+    .handwriting {
+      font-family: 'Brush Script MT', cursive;
+      animation: handwriting 0.5s ease;
+    }
+
+    @keyframes handwriting {
+      from { transform: translateX(-1000px); }
+      to { transform: translateX(0); }
+    }
+
+    .handwriting2 {
+      font-family: 'Dancing Script', cursive;
+      animation: handwriting 0.7s ease;
+    }
+
+    .handwriting3 {
+      font-family: 'Pacifico', cursive;
+      animation: handwriting 0.9s ease;
+    }
+
+    .emoji {
+      font-size: 5rem;
+      margin-top: 10px;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.4);
+      z-index: 5;
+      display: none;
+    }
+
+    .overlay.show {
+      display: block;
+    }
+
+    .message {
+      font-size: 1.5rem;
+      color: #444;
+      margin-top: 20px;
+      text-align: center;
+      font-style: italic;
+    }
+
+    @media (max-width: 500px) {
+      .num-tile {
+        font-size: 3rem;
+        height: 120px;
+      }
+
+      .showcase {
+        font-size: 4rem;
+        padding: 30px;
+      }
+    }
+    .back-button {
+      align-self: flex-start;
+      margin-bottom: 30px;
+      padding: 10px 20px;
+      background-color: green;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .back-button:hover {
+      background-color: darkgreen;
+    }
+    
+  </style>
+</head>
+<body>
+  <button class="back-button" onclick="history.back()">← Go Back</button>
+  <h1>Interactive Number Learning</h1>
+
+  <div class="numbers-grid">
+    <div class="num-tile" onclick="showNumber(0)">0</div>
+    <div class="num-tile" onclick="showNumber(1)">1</div>
+    <div class="num-tile" onclick="showNumber(2)">2</div>
+    <div class="num-tile" onclick="showNumber(3)">3</div>
+    <div class="num-tile" onclick="showNumber(4)">4</div>
+    <div class="num-tile" onclick="showNumber(5)">5</div>
+    <div class="num-tile" onclick="showNumber(6)">6</div>
+    <div class="num-tile" onclick="showNumber(7)">7</div>
+    <div class="num-tile" onclick="showNumber(8)">8</div>
+    <div class="num-tile" onclick="showNumber(9)">9</div>
+  </div>
+
+  <div class="overlay" onclick="hideShowcase()"></div>
+
+  <div class="showcase" id="showcase">
+    <div id="bigNumber">0</div>
+    <div class="emoji" id="emoji">🎉</div>
+    <div class="message" id="message">You're doing great!</div>
+  </div>
+
+  <script>
+    const emojis = ["🌟", "🎉", "🍭", "🐣", "🦄", "🎈", "⭐", "🐥", "🎵", "💫"];
+    const messages = [
+      "You're doing awesome!",
+      "Great job!",
+      "You're a superstar!",
+      "Keep it up!",
+      "You're amazing!",
+      "You're so smart!",
+      "Well done!",
+      "You're fantastic!"
+    ];
+
+    const handwritingClasses = [
+      'handwriting', 'handwriting2', 'handwriting3'
+    ];
+
+    const randomBgColor = () => {
+      const colors = ['#f4f4ff', '#fffbf0', '#ffebd7', '#f0f8ff', '#ffe0b3'];
+      return colors[Math.floor(Math.random() * colors.length)];
+    };
+
+    function showNumber(num) {
+      const showcase = document.getElementById("showcase");
+      const bigNumber = document.getElementById("bigNumber");
+      const emoji = document.getElementById("emoji");
+      const message = document.getElementById("message");
+
+      bigNumber.innerText = num;
+      emoji.innerText = emojis[num];
+      message.innerText = messages[Math.floor(Math.random() * messages.length)];
+
+      showcase.classList.add("show");
+      document.querySelector(".overlay").classList.add("show");
+      document.body.style.backgroundColor = randomBgColor();
+
+      const randomClass = handwritingClasses[Math.floor(Math.random() * handwritingClasses.length)];
+      bigNumber.className = 'handwriting ' + randomClass;
+
+      // Speaking the number
+      const speech = new SpeechSynthesisUtterance(`This is number ${num}`);
+      speech.pitch = 1;
+      speech.rate = 1;
+      speechSynthesis.speak(speech);
+    }
+
+    function hideShowcase() {
+      document.getElementById("showcase").classList.remove("show");
+      document.querySelector(".overlay").classList.remove("show");
+    }
+  </script>
+</body>
+</html>

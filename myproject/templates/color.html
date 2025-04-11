@@ -1,0 +1,170 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Colors - Amchi Shala</title>
+  <link rel="stylesheet" href="{% static 'styles/stylesheet.css' %}">
+  <style>
+    :root {
+      --theme-color: #e6ffe6;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--theme-color);
+      transition: background-color 0.6s ease;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background-color: #006400;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+    }
+
+    header img {
+      height: 50px;
+    }
+
+    .main {
+      flex: 1;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 40px;
+      background: linear-gradient(90deg, #007cf0, #00dfd8, #ff0080);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
+      }
+      to {
+        text-shadow: 0 0 25px rgba(255, 0, 200, 0.7);
+      }
+    }
+
+    .color-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 25px;
+      width: 100%;
+      max-width: 1100px;
+    }
+
+    .color-tile {
+      height: 130px;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      text-transform: capitalize;
+      position: relative;
+      animation: floatIn 0.5s ease forwards;
+      opacity: 0;
+    }
+
+    .color-tile:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 20px rgba(0,0,0,0.4);
+    }
+
+    .color-tile:active {
+      transform: scale(0.95);
+    }
+
+    @keyframes floatIn {
+      from {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .color-tile:nth-child(n) {
+      animation-delay: calc(0.1s * var(--i));
+    }
+
+    .light-text {
+      color: #222 !important;
+    }
+
+    footer {
+      background-color: #78e22a;
+      text-align: center;
+      padding: 15px;
+      font-size: 14px;
+      color: #003300;
+    }
+    .back-button {
+      align-self: flex-start;
+      margin-bottom: 30px;
+      padding: 10px 20px;
+      background-color: green;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .back-button:hover {
+      background-color: darkgreen;
+    }
+    
+  </style>
+</head>
+<body>
+ 
+  <main class="main">
+    <button class="back-button" onclick="history.back()">← Go Back</button>
+    <h1>Tap a Color to Change the Theme</h1>
+
+    <div class="color-grid">
+      {% for color in colors %}
+        <div class="color-tile {% if color in 'yellow pink white' %}light-text{% endif %}" 
+             style="background-color: {{ color }}; {% if color == 'white' %}border: 1px solid #ccc;{% endif %} --i:{{ forloop.counter }};" 
+             onclick="changeTheme('{{ color }}')">
+          {{ color }}
+        </div>
+      {% endfor %}
+    </div>
+    
+  </main>
+
+  
+
+  <script>
+    function changeTheme(color) {
+      document.documentElement.style.setProperty('--theme-color', color);
+    }
+  </script>
+</body>
+</html>

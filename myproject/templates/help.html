@@ -1,0 +1,97 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Help - Amchi Shala</title>
+  <link rel="stylesheet" href="{% static 'styles/stylesheet.css' %}">
+  <link rel="stylesheet" href="{% static 'styles/StarfallvBP.css' %}">
+  <style>
+    body {
+      background-color: #006400;
+      font-family: 'Liberation Sans', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 960px;
+      margin: 60px auto;
+      padding: 40px;
+      background-color: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      color: #003300;
+    }
+    h1 {
+      font-size: 36px;
+      color: #006400;
+      margin-bottom: 25px;
+      font-family: 'liberation_sansbold', sans-serif;
+      text-align: center;
+    }
+    h2 {
+      font-size: 24px;
+      color: #004d00;
+      margin-top: 35px;
+      margin-bottom: 15px;
+      border-bottom: 2px solid #cce5cc;
+      padding-bottom: 5px;
+    }
+    p, li {
+      font-size: 17px;
+      line-height: 1.8;
+    }
+    ul {
+      padding-left: 25px;
+    }
+    li {
+      margin-bottom: 15px;
+    }
+    strong {
+      color: #005500;
+    }
+    a {
+      color: #006400;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .contact-info li {
+      list-style: none;
+      margin-bottom: 10px;
+    }
+    .footer-note {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 14px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Help & Support</h1>
+
+    <p>Welcome to the Help Center for <strong>Amchi Shala</strong>. We're here to assist you with anything you need to ensure the best learning experience for your child or student.</p>
+
+    <h2>Frequently Asked Questions</h2>
+    <ul>
+      <li><strong>Q: Who can use Amchi Shala?</strong><br>A: Amchi Shala is designed for children with mental and developmental challenges, but any child who enjoys interactive learning is welcome.</li>
+      <li><strong>Q: Is Amchi Shala free?</strong><br>A: Yes! Core content is free. Additional materials are available with low-cost membership.</li>
+      <li><strong>Q: Do I need to sign in?</strong><br>A: You can explore most resources without signing in, but a login is needed to access personalized content and track progress.</li>
+    </ul>
+
+    <h2>Contact Us</h2>
+    <p>If you need more help, feel free to reach out:</p>
+    <ul class="contact-info">
+      <li><strong>Email:</strong> <a href="mailto:support@amchishala.org">support@amchishala.org</a></li>
+      <li><strong>Phone:</strong> +91-9322934876</li>
+    </ul>
+
+    <p class="footer-note">We're here to help you make the most of your Amchi Shala journey. Let's grow and learn together!</p>
+  </div>
+</body>
+</html>

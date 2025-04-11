@@ -1,0 +1,119 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign In - Amchi Shala</title>
+  <link rel="stylesheet" href="{% static 'styles/stylesheet.css' %}">
+  <link rel="stylesheet" href="{% static 'styles/StarfallvBP.css' %}">
+  <style>
+    body {
+      background: linear-gradient(to right, #006400, #00a859);
+      font-family: 'Liberation Sans', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .signin-container {
+      background-color: #ffffff;
+      padding: 50px 40px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      color: #003300;
+      transition: transform 0.3s ease;
+    }
+    .signin-container:hover {
+      transform: scale(1.02);
+    }
+    h1 {
+      font-size: 30px;
+      color: #006400;
+      margin-bottom: 25px;
+      font-family: 'liberation_sansbold', sans-serif;
+    }
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 14px;
+      margin: 12px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+    input[type="text"]:focus,
+    input[type="password"]:focus {
+      border-color: #28a745;
+      outline: none;
+      box-shadow: 0 0 8px rgba(40, 167, 69, 0.2);
+    }
+    button {
+      width: 100%;
+      padding: 14px;
+      background-color: #28a745;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-top: 10px;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+    .google-btn {
+      background-color: #db4437;
+      margin-top: 15px;
+    }
+    .google-btn:hover {
+      background-color: #c1351d;
+    }
+    .note {
+      font-size: 14px;
+      margin-top: 25px;
+      color: #555;
+    }
+    .error-messages {
+      color: red;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="signin-container">
+    <h1>Sign In to Amchi Shala</h1>
+    <form method="POST" action="{% url 'signin' %}">
+      {% csrf_token %}
+      <input type="text" placeholder="Username" name="username" required>
+      <input type="password" placeholder="Password" name="password" required>
+      <button type="submit">Sign In</button>
+
+      {% if messages %}
+        <div class="error-messages">
+          {% for message in messages %}
+            {{ message }}
+          {% endfor %}
+        </div>
+      {% endif %}
+    </form>
+
+    <!-- Google Sign In Button -->
+    <div>
+      <a href="{% url 'social:begin' 'google-oauth2' %}?next=/welcome/" style="text-decoration: none;">
+        <button type="button" class="google-btn">
+          Sign in with Google
+        </button>
+      </a>
+    </div>
+  </div>
+</body>
+</html>

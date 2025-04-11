@@ -1,0 +1,199 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ABC Songs - Amchi Shala</title>
+  <link rel="stylesheet" href="{% static 'styles/stylesheet.css' %}">
+  <link rel="stylesheet" href="{% static 'styles/StarfallvBP.css' %}">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Liberation Sans', sans-serif;
+      background-color: #f0fff0;
+      color: #003300;
+    }
+    header {
+      background-color: #006400;
+      padding: 20px;
+      text-align: center;
+      color: white;
+    }
+    header img {
+      height: 50px;
+      vertical-align: middle;
+    }
+    header h1 {
+      display: inline-block;
+      margin-left: 10px;
+      vertical-align: middle;
+      font-size: 26px;
+    }
+    .main {
+      max-width: 1080px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 100, 0, 0.15);
+    }
+    .main h2 {
+      text-align: center;
+      color: #006400;
+      font-size: 28px;
+      margin-bottom: 30px;
+    }
+    .videos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .video-box {
+      background-color: #e6ffe6;
+      padding: 16px;
+      border-radius: 12px;
+      box-shadow: 0 4px 14px rgba(0, 100, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+    .video-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0, 100, 0, 0.2);
+    }
+    .video-box video {
+      width: 100%;
+      border-radius: 8px;
+      outline: none;
+    }
+    .video-box h3 {
+      margin: 10px 0 5px;
+      color: #004d00;
+      font-size: 20px;
+    }
+    .video-box p {
+      font-size: 15px;
+      margin-bottom: 10px;
+      color: #333;
+    }
+    .back-button {
+      margin: 20px;
+      padding: 10px 20px;
+      background-color: #006400;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .back-button:hover {
+      background-color: #004d00;
+    }
+    footer {
+      background-color: #78e22a;
+      text-align: center;
+      padding: 15px;
+      font-size: 14px;
+      color: #003300;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="{% static 'images/Logo.png' %}" alt="Logo">
+    <h1>Amchi Shala - ABC Songs</h1>
+  </header>
+
+  <button class="back-button" onclick="history.back()">← Go Back</button>
+
+  <div class="main">
+    <h2>Sing, Learn, and Groove with ABC Songs!</h2>
+    <div class="videos-grid">
+
+{% comment %} Loop over videos in future if dynamic {% endcomment %}
+
+      <div class="video-box">
+        <h3>ABC Song</h3>
+        <p>Sing the alphabet with vibrant visuals and catchy tunes from A to Z!</p>
+        <video controls poster="{% static 'thumbnails/apple.png' %}" onclick="toggleFullScreen(this)">
+          <source src="{% static 'media/apple.mp4' %}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <div class="video-box">
+        <h3>Phonics - Letter A</h3>
+        <p>Explore the sound of the letter A through a fun and animated phonics song.</p>
+        <video controls poster="{% static 'thumbnails/bear.png' %}" onclick="toggleFullScreen(this)">
+          <source src="{% static 'media/bear.mp4' %}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <div class="video-box">
+        <h3>Alphabet Train</h3>
+        <p>Hop on the alphabet train and meet each letter in a fun, musical ride!</p>
+        <video controls poster="{% static 'thumbnails/cat.png' %}" onclick="toggleFullScreen(this)">
+          <source src="{% static 'media/cat.mp4' %}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <div class="video-box">
+        <h3>ABC Animals</h3>
+        <p>Every letter comes with an animal friend! Learn ABCs the wild way.</p>
+        <video controls poster="{% static 'thumbnails/dianasour.jpeg' %}" onclick="toggleFullScreen(this)">
+          <source src="{% static 'media/Dianosour.mp4' %}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <div class="video-box">
+        <h3>ABC Dance</h3>
+        <p>Get moving and dancing while learning your ABCs with this groovy beat.</p>
+        <video controls poster="{% static 'thumbnails/pizza.jpeg' %}" onclick="toggleFullScreen(this)">
+          <source src="{% static 'media/pizza.mp4' %}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <div class="video-box">
+        <h3>ABC Wheels</h3>
+        <p>Learn the alphabet while rolling with the wheels on the bus!</p>
+        <video controls poster="{% static 'thumbnails/SNAKE.jpeg' %}" onclick="toggleFullScreen(this)">
+          <source src="{% static 'media/snake.mp4' %}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    Amchi Shala © 2025. All rights reserved.
+  </footer>
+
+  <script>
+  // Wait for the DOM to fully load
+  document.addEventListener("DOMContentLoaded", function() {
+    const videos = document.querySelectorAll("video");
+
+    videos.forEach(video => {
+      video.addEventListener("play", () => {
+        if (!document.fullscreenElement) {
+          if (video.requestFullscreen) {
+            video.requestFullscreen();
+          } else if (video.webkitRequestFullscreen) {
+            video.webkitRequestFullscreen();
+          } else if (video.msRequestFullscreen) {
+            video.msRequestFullscreen();
+          }
+        }
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
